@@ -7,11 +7,14 @@ variable "instance_type" {
 }
 
 variable "environment" {
-    default = "deepdive"  
+    default = "diffence_in_depth"  
 }
 
 variable "vpc_id" {
 }
 
 variable "subnet_id" {
+}
+variable "ec2_count" {
+  
 }

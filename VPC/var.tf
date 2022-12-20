@@ -3,5 +3,5 @@ default = "10.0.0.0/16"
 }
 
 variable "environment" {
-  default = "deepdive"
+  default = "diffence_in_depth"
 }
