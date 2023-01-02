@@ -1,7 +1,7 @@
 
 
-resource "aws_autoscaling_group" "bar" {
-  name                      = "ASG-Group"
+resource "aws_autoscaling_group" "asg" {
+  name                      = var.environment
   max_size                  = 4
   min_size                  = 1
   health_check_grace_period = 300
@@ -13,15 +13,15 @@ resource "aws_autoscaling_group" "bar" {
   
   
   launch_template {
-    id      = aws_launch_template.foobar.id
+    id      = aws_launch_template.launch_templet.id
     version = "$Latest"
   }
 }
 
-resource "aws_launch_template" "foobar" {
-  name  = "Launch-template-ASG"
+resource "aws_launch_template" "launch_templet" {
+  name  = "${var.environment}-launch-templet"
   image_id      = var.ami
-  instance_type = var.instance_type
+  instance_type = "${var.instance_type}"
 }
 # resource "aws_autoscaling_policy" "example" {
 #   autoscaling_group_name = aws_autoscaling_group.bar.name

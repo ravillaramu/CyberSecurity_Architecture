@@ -1,22 +1,64 @@
-variable "storage" {
-  default = 20
+
+variable "environment" {
+
 }
-variable "db_name" {
- default = "MariaDB " 
+
+variable "vpc_id" {
+  
 }
-variable "engine" {
-default = "mariadb"  
+variable "subnet_ids" {
+  
 }
-variable "version" {
-  default = "10.6.11"
+
+variable "az" {
+ type    =list(any)
+ default = ["ap-south-1a", "ap-south-1b", "ap-south-1c"]
 }
-variable "class" {
-  default = "db.t3.micro"
+variable "identifier" {
+  default = "amazon-aurora"
 }
-variable "username" {
+# variable "storage" {
+#   default = "20"
+# }
+variable "backup" {
+  default = "30"
+}
+variable "engine"{
+  default = "amazon-aurora"
+}
+variable "multi_az"{
+  default = "false"
+}
+variable "engine_version"{
+  default = "Aurora(MySQL 5.7)2.10.2"
+}
+variable "parametergroup"{
+  default = "default.aurora-mysql5.7"
+}
+
+variable "instancetype"{
+  default = "db.t3.medium"
+}
+variable "db_name"{
+}
+variable "username"{
   default = "Admin"
 }
-variable "password" {
-  default = "Admin@123"
+variable "password"{
+  default = "Admin123"
 }
+variable "port"{
+  default = "3306"
+}
+variable "snapshot"{
+  default = "false"
+}
+
+variable "protection"{
+  default = "false"
+}
+
+
+
+
 

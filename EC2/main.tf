@@ -72,4 +72,15 @@ resource "aws_security_group" "deepdive_security_group" {
     }
 
 }
-
+# Create Elastic IP
+# resource "aws_eip" "eip" {
+#   vpc              = true
+#   public_ipv4_pool = "amazon"
+#   tags = {
+#   Name        = "${var.environment}-eip"
+# }
+# }
+# resource "aws_eip_association" "eip_association" {
+#   instance_id   = aws_instance.deepdive.id
+#   allocation_id = aws_eip.eip.id
+# }

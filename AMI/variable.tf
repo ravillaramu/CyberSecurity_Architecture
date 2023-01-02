@@ -1,0 +1,7 @@
+variable "instance" {
+  
+}
+
+variable "environment" {
+  
+}
