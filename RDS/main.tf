@@ -42,8 +42,7 @@ resource "aws_db_instance" "Amazon-Aurora" {
     vpc_security_group_ids    = [aws_security_group.rds_sg.id]
     skip_final_snapshot       = var.snapshot
     deletion_protection       = var.protection 
-    # kms_key_id                = aws_kms_key.kms_key.id
-
+    kms_key_id                = var.kmskey
     # need to add kms
 }
 

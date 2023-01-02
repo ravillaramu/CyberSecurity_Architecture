@@ -57,7 +57,9 @@ variable "snapshot"{
 variable "protection"{
   default = "false"
 }
-
+variable "kmskey" {
+  
+}
 
 
 
