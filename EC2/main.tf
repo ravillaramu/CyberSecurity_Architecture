@@ -13,10 +13,15 @@ resource "aws_instance" "deepdive" {
   subnet_id = var.subnet_id
   vpc_security_group_ids = [aws_security_group.deepdive_security_group.id]
   tags = {
-    Name = "${var.environment}-server"
+    Name = "${var.environment}-server-${count.index + 1}"
   }
 }
 
+resource "aws_ebs_encryption_by_default" "encrypt_ebs" {
+
+    enabled = true
+  
+}
 
 # # creating ebs volume and attching to ec2 instance
 # resource "aws_ebs_volume" "deepdive_ebs" {

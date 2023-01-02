@@ -111,3 +111,12 @@ resource "aws_route_table_association" "private_subnet_ssosiation" {
   route_table_id = aws_route_table.private_routet_table.id
 
 }
+
+#  VPC Flow Log to S3 bucket
+
+resource "aws_flow_log" "flowlog" {
+  log_destination      = var.bucket
+  log_destination_type = "s3"
+  traffic_type         = "ALL"
+  vpc_id               = aws_vpc.vpc.id
+}

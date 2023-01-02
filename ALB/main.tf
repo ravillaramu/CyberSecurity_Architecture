@@ -5,7 +5,7 @@ resource "aws_lb_target_group" "targetgroup_1" {
   name        = "${var.environment}-tg1"
   target_type = "alb"
   port        = 80
-  protocol    = "TCP"
+  protocol    = "HTTP"
   vpc_id      = var.vpc_id
 }
 
@@ -13,7 +13,7 @@ resource "aws_lb_target_group" "targetgroup_2" {
   name        = "${var.environment}-tg2"
   target_type = "alb"
   port        = 80
-  protocol    = "TCP"
+  protocol    = "HTTP"
   vpc_id      = var.vpc_id
 }
 
@@ -32,83 +32,83 @@ resource "aws_lb_target_group_attachment" "tga_2" {
 
 
 
-# Security Group
+# # Security Group
 
-resource "aws_security_group" "deepdive_security_group" {
-  name        = "alb_sg"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = var.vpc_id
+# resource "aws_security_group" "alb_security_group" {
+#   name        = "alb_sg"
+#   description = "Allow TLS inbound traffic"
+#   vpc_id      = var.vpc_id
 
-  ingress {
-    description      = "TLS from VPC"
-    from_port        = 80
-    to_port          = 80
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+#   ingress {
+#     description      = "TLS from VPC"
+#     from_port        = 80
+#     to_port          = 80
+#     protocol         = "tcp"
+#     cidr_blocks      = ["0.0.0.0/0"]
 
-  }
+#   }
 
-    ingress {
-    description      = "TLS from VPC"
-    from_port        = 443
-    to_port          = 443
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-  }
-
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = "${var.environment}-alb-sg"
-  }
-}
+#     ingress {
+#     description      = "TLS from VPC"
+#     from_port        = 443
+#     to_port          = 443
+#     protocol         = "tcp"
+#     cidr_blocks      = ["0.0.0.0/0"]
+#   }
 
 
-#creating loadbalncer
+#   egress {
+#     from_port   = 0
+#     to_port     = 0
+#     protocol    = "-1"
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
 
-resource "aws_lb" "alb" {
-  name               = "${var.environment}-lb"
-  internal           = false
-  load_balancer_type = "application"
-  security_groups    =  aws_security_group.deepdive_security_group.id
-  subnets            = var.subnets
-
-  enable_deletion_protection = false
-  tags = {
-    Environment = "deepdive"
-  }
-}
+#   tags = {
+#     Name = "${var.environment}-alb-sg"
+#   }
+# }
 
 
-# addning listeners to alb
+# #creating loadbalncer
+
+# resource "aws_lb" "alb" {
+#   name               = "${var.environment}-alb"
+#   internal           = false
+#   load_balancer_type = "application"
+#   security_groups    =  [aws_security_group.alb_security_group.id]
+#   subnets            = var.subnets
+
+#   enable_deletion_protection = false
+#   tags = {
+#     Environment = "${var.environment}"
+#   }
+# }
 
 
-resource "aws_lb_listener" "listener_1" {
-  load_balancer_arn = aws_lb.alb.arn
-  port              = "80"
-  protocol          = "HTTP"
+# # addning listeners to alb
 
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.targetgroup_1.arn
-  }
-}
 
-resource "aws_lb_listener" "listener_2" {
-  load_balancer_arn = aws_lb.alb.arn
-  port              = "80"
-  protocol          = "HTTP"
+# resource "aws_lb_listener" "listener_1" {
+#   load_balancer_arn = aws_lb.alb.arn
+#   port              = "80"
+#   protocol          = "HTTP"
 
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.targetgroup_2.arn
-  }
-}
+#   default_action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.targetgroup_1.arn
+#   }
+# }
+
+# resource "aws_lb_listener" "listener_2" {
+#   load_balancer_arn = aws_lb.alb.arn
+#   port              = "80"
+#   protocol          = "HTTP"
+
+#   default_action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.targetgroup_2.arn
+#   }
+# }
 
 

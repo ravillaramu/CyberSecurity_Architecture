@@ -7,7 +7,7 @@ variable "instance_type" {
 }
 
 variable "environment" {
-    default = "diffence_in_depth"  
+    default = "diffence-in-depth"  
 }
 
 variable "vpc_id" {
