@@ -8,6 +8,7 @@ resource "aws_instance" "deepdive" {
     device_name = "/dev/xvda"
     volume_size = 10
   }
+  kms_key_name = var.kmskey
   count = var.ec2_count
   user_data = "${file("./EC2/script.sh")}"
   subnet_id = var.subnet_id
@@ -17,13 +18,13 @@ resource "aws_instance" "deepdive" {
   }
 }
 
-resource "aws_ebs_encryption_by_default" "encrypt_ebs" {
+# resource "aws_ebs_encryption_by_default" "encrypt_ebs" {
 
-    enabled = true
+#     enabled = true
   
-}
+# }
 
-# # creating ebs volume and attching to ec2 instance
+# # creating extra ebs volume and attching to ec2 instance
 # resource "aws_ebs_volume" "deepdive_ebs" {
 #   availability_zone = "us-east-1a"
 #   size              = 40

@@ -11,7 +11,9 @@ module "server-1" {
   ec2_count = var.number
   vpc_id    = module.myvpc.vpc_id
   subnet_id = module.myvpc.aws_public_subnets[0]
+  kmskey = module.kms.key_id
 }
+
 module "alb" {
   source     = "./ALB"
   instance_1 = module.server-1.aws_instance_1

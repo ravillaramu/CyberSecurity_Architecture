@@ -18,3 +18,7 @@ variable "subnet_id" {
 variable "ec2_count" {
   
 }
+
+variable "kmskey" {
+  
+}
