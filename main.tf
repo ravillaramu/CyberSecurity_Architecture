@@ -65,7 +65,7 @@ kmskey = module.kms.key_id
 
 }
   module "secretmanager" {
-    source = ./secretmanager
+    source = "./secretmanager"
     secretname = var.secretname
 }
     
