@@ -1,3 +1,6 @@
+# need to be update in modules
+
+
 resource "random_password" "password" {
 length = var.length
 special = var.special
@@ -23,4 +26,5 @@ secret_id = data.aws_secretsmanager_secret.secretmasterDB.arn
 }
 {
 
-db_creds = jsondecode(data.aws_secretsmanager_secret_version.creds.secret_string) }
+db_creds = jsondecode(data.aws_secretsmanager_secret_version.creds.secret_string)
+ }
