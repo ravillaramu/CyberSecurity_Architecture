@@ -8,7 +8,7 @@ resource "aws_instance" "deepdive" {
     device_name = "/dev/xvda"
     volume_size = 10
   }
-  kms_key_name = var.kmskey
+  kms_key_id = var.kmskey
   count = var.ec2_count
   user_data = "${file("./EC2/script.sh")}"
   subnet_id = var.subnet_id

@@ -11,6 +11,9 @@ variable "environment" {
 variable "username" {
   default = "Admin"
 }
+variable "password" {
+  
+}
 
 variable "kmskey" {
   

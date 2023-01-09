@@ -48,6 +48,4 @@ variable "username"{
 variable "password"{
   default = "Admin123"
 }
-variable "secretname" {
-  default = "MasterDB"
-}
+
