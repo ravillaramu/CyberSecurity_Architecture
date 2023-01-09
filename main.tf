@@ -66,3 +66,8 @@ protection =true
 kmskey = module.kms.key_id
 
 }
+  module "secretmanager" {
+    source = "./secretmanager"
+    secretname = var.secretname
+}
+    
