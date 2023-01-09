@@ -18,6 +18,7 @@ secret_string = <<EOF
 }
 EOF
 }
+
 data "aws_secretsmanager_secret" "secretmasterDB" {
 arn = aws_secretsmanager_secret.secretmasterDB.arn
 }
